@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+    <nav>
+        <a href="#">Video Game Info</a>
+        <div>
+            <ul>
+                <li>
+                    <a href="Home-Page.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav> 
+    <section>
+    <div>
+        <h2>Login</h2>
+        <form>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</section>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+    
+            // For testing purposes, we'll just save the username in local storage
+            localStorage.setItem('user', username);
+    
+            // Redirect to the profile page
+            window.location.href = 'Profile.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="Profile.css">
+</head>
+<body>
+    <nav>
+        <a href="#">Video Game Info</a>
+        <div>
+            <ul>
+                <li>
+                    <a href="Home-Page.html">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav> 
+    <section>
+    <div>
+        <h2>Profile</h2>
+        <p id="welcome-message"></p> <!-- Welcome message will go here -->
+        <!-- User information will go here -->
+    </div>
+    <div>
+        <h2>Your Games</h2>
+        <div id="games-list"></div>
+    </div>
+</section>
+    <script>
+        // Get the username from local storage
+        var username = localStorage.getItem('user');
+    
+        // Get the welcome message element
+        var welcomeMessageElement = document.getElementById('welcome-message');
+    
+        // Set the welcome message
+        welcomeMessageElement.textContent = 'Welcome, ' + username + '!';
+    </script>
+
+    <script>
+        // Get the list of games from local storage
+        var games = JSON.parse(localStorage.getItem('games')) || [];
+    
+        // Get the games list element
+        var gamesListElement = document.getElementById('games-list');
+    
+        // For each game in the list, add a paragraph element with the game description and a "Remove" button
+        games.forEach(function(game, index) {
+            var gameElement = document.createElement('p');
+            gameElement.textContent = game + ': Game description goes here'; // Replace 'Game description goes here' with the actual game description
+    
+            var removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.addEventListener('click', function() {
+                // Remove the game from the list
+                games.splice(index, 1);
+    
+                // Save the updated list in local storage
+                localStorage.setItem('games', JSON.stringify(games));
+    
+                // Remove the game element from the games list element
+                gamesListElement.removeChild(gameElement);
+            });
+    
+            gameElement.appendChild(removeButton);
+            gamesListElement.appendChild(gameElement);
+        });
+    </script>
+</body>
+</html>

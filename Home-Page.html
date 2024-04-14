@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Game Info</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="Home-Page.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav>
+    <a href="#">Video Game Info</a>
+    <div>
+        <ul>
+            <li>
+                <a href="Home-Page.html">Home</a>
+            </li>
+            <li>
+                <a href="Register.html">Register</a>
+            </li>
+            <li>
+                <a href="Login.html">Login</a>
+            </li>
+            <li>
+                <a href="Profile.html">Profile</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<section>
+    <div>
+        <h2>Select a game</h2>
+        <form id="add-game-form">
+            <select id="game-select">
+                <option value="Game 1">Game 1</option>
+                <option value="Game 2">Game 2</option>
+                <option value="Game 3">Game 3</option>
+                <!-- Add more options as needed -->
+            </select>
+            <button type="submit">Search game</button>
+        </form>
+    </div>
+</section>
+
+    <script>
+        document.getElementById('add-game-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            // Get the selected game
+            var selectedGame = document.getElementById('game-select').value;
+    
+            // Get the current list of games from local storage
+            var games = JSON.parse(localStorage.getItem('games')) || [];
+    
+            // Add the selected game to the list
+            games.push(selectedGame);
+    
+            // Save the updated list in local storage
+            localStorage.setItem('games', JSON.stringify(games));
+        
+            // Remove the selected game from the dropdown list
+            var gameOption = document.querySelector('#game-select option[value="' + selectedGame + '"]');
+            gameOption.remove();
+
+            // Display a confirmation message
+            alert('Game added to your profile!');
+    
+            // Navigate to the profile page
+            window.location.href = 'Profile.html';
+        });
+    </script>
+</body>
+</html>
